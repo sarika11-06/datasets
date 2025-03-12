@@ -28,7 +28,7 @@ app.add_middleware(
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=False, min_detection_confidence=0.3)
 
-labels_dict = {0: 'Arala', 1: 'Ardhachandra', 2: 'Ardhapataka', 3: 'Sikhara', 4: 'Suchi', 5: 'Pataka', 6: 'Musti', 7: 'Mayura', 8:'Kartarimukha' }
+labels_dict = {0: 'Ardhachandra', 1: 'Suchi'}
 
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
