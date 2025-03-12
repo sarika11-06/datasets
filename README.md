@@ -14,8 +14,8 @@ This project captures hand gestures using OpenCV, extracts features using Mediap
 ## 1️⃣ Installation
 ### **Clone the Repository**
 ```bash
-git clone https://github.com/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/sarika11-06/datasets.git
+cd datasets
 ```
 
 ### **Install Dependencies**
