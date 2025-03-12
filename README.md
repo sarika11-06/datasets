@@ -94,14 +94,7 @@ Your webcam will open, and the system will classify gestures in real time.
 - ✅ Train a deep learning model (CNN) for better accuracy
 - ✅ Add more gestures
 - ✅ Improve React UI with real-time visualization
-
----
-
-## 📌 Authors
-- **Your Name** (@your-github-handle)
-
-📧 Contact: your.email@example.com
-
+  
 ---
 
 🎉 **Enjoy building your hand gesture recognition system! 🚀**
