@@ -1,3 +1,32 @@
-/data/0
-/data/1
-/data/2
+# Ignore dataset & model files
+data.pickle
+model.p
+
+# Ignore collected images
+/data/
+*.jpg
+*.png
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment (if using venv)
+venv/
+.env
+
+# Ignore FastAPI logs (if any)
+*.log
+logs/
+
+# Ignore Node modules (if using React frontend)
+node_modules/
+dist/
+build/
+
+# Ignore VS Code settings (if using VS Code)
+.vscode/
+
+# Ignore Jupyter Notebook checkpoints (if you use Jupyter)
+.ipynb_checkpoints/
