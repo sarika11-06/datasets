@@ -4,13 +4,14 @@ import mediapipe as mp
 import cv2
 import numpy as np
 
-mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
+# Initialize MediaPipe Pose Model
+mp_pose = mp.solutions.pose
+pose = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.3)
 
-DATA_DIR = './data'
+DATA_DIR = './data'  # Path to dataset directory
 
-data = []
-labels = []
+data = []  # Stores posture landmarks
+labels = []  # Stores class labels (folder names as integers)
 
 for dir_ in os.listdir(DATA_DIR):
     for img_path in os.listdir(os.path.join(DATA_DIR, dir_)):
@@ -19,38 +20,37 @@ for dir_ in os.listdir(DATA_DIR):
 
         img = cv2.imread(os.path.join(DATA_DIR, dir_, img_path))
         
-        if img is None:  # Check if the image is loaded
+        if img is None:
             print(f"Error loading image: {img_path}")
             continue
         
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        results = hands.process(img_rgb)
+        results = pose.process(img_rgb)
         
-        if results.multi_hand_landmarks:
-            print(f"✅ Hand detected in {img_path}")  # Debugging print
+        if results.pose_landmarks:
+            print(f"✅ Full-body detected in {img_path}")
             
-            for hand_landmarks in results.multi_hand_landmarks:
-                for i in range(len(hand_landmarks.landmark)):
-                    x = hand_landmarks.landmark[i].x
-                    y = hand_landmarks.landmark[i].y
+            for i, landmark in enumerate(results.pose_landmarks.landmark):
+                x = landmark.x
+                y = landmark.y
+                x_.append(x)
+                y_.append(y)
 
-                    x_.append(x)
-                    y_.append(y)
-
-                for i in range(len(hand_landmarks.landmark)):
-                    x = hand_landmarks.landmark[i].x
-                    y = hand_landmarks.landmark[i].y
-                    data_aux.append(x - min(x_))
-                    data_aux.append(y - min(y_))
+            # Normalize keypoints relative to the bounding box
+            for i, landmark in enumerate(results.pose_landmarks.landmark):
+                x = landmark.x - min(x_)
+                y = landmark.y - min(y_)
+                data_aux.append(x)
+                data_aux.append(y)
 
             data.append(data_aux)
-            labels.append(int(dir_))  # Convert folder names to integers
+            labels.append(int(dir_))  # Convert folder names to class labels
 
         else:
-            print(f"❌ No hand detected in {img_path}")  # Debugging print
+            print(f"❌ No full-body detected in {img_path}")
 
 # Save dataset
-with open('data.pickle', 'wb') as f:
+with open('bharatanatyam_data.pickle', 'wb') as f:
     pickle.dump({'data': data, 'labels': labels}, f)
 
-print("✅ Dataset creation complete!")
+print("✅ Bharatanatyam posture dataset creation complete!")

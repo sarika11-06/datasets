@@ -28,7 +28,7 @@ app.add_middleware(
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=False, min_detection_confidence=0.3)
 
-labels_dict = {0: 'Ardhachandra', 1: 'Suchi'}
+labels_dict = {0: 'Pataka', 1: 'Tripataka', 2: 'Ardhapataka', 3: 'Katarimukha', 4: 'Mayura', 5: 'Ardhachandra', 6: 'Arala', 7: 'Sukatunda', 8: 'Musti', 9: 'Sikhara', 10: 'Kapittha', 11: 'Katamukha', 12: 'Suchi', 13: 'Chandrakala', 14: 'Padmakosa', 15: 'Sarpashirsa', 16: 'Mrgasirsa', 17: 'Simhamukha', 18: 'Kangula', 19: 'Alapadma', 20: 'Catura', 21: 'Bhramara', 22: 'Hamsasya', 23: 'Hamsapaksa', 24: 'Sandamsa', 25: 'Mukula', 26: 'Tamracuda',27:'Trisula', 28:'Anjali', 29:'Kapota', 30:'Karkata', 31:'Svastika', 32:'Dola', 33:'Puspaputa', 34:'Utsanga', 35:'Sivalinga', 36:'Katakavardhana', 37:'Kartarisvastika', 38:'Sakata', 39:'Sankha', 40:'Chakra', 41:'Pasa', 42:'Kilaka',43:'Matsya', 44:'Kurma', 45:'Varaha', 46:'Garuda', 47:'Nagabandha', 48:'Katva', 49:'Bherunda'}
 
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
